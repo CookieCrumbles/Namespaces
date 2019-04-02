@@ -17,7 +17,7 @@ $seleniumDriver.Navigate().GoToURL("https://www.hln.be")
     # Navigate is a Method of the CLass ChromeDriver
     # GoToURL is Method of the Method navigate()
 
-cleaner # Clears up console in VS-code the real way
+sleep -Seconds 5
 
 Write-debug  "BEGIN: $(get-date)" # Record start-time
 
@@ -37,9 +37,8 @@ Write-debug  "BEGIN: $(get-date)" # Record start-time
 # Make the driver wait 10 seconds
 # This gets triggered by the until(), without it; it won't wait for 10 seconds and will move on to the next line.
 # If the element is visible after just one second, it will continue on, if not it will keep looking for the remaining 8 seconds after which it will continue on to the next line.
-$seleniumWait = New-Object -TypeName OpenQA.Selenium.Support.UI.WebDriverWait($seleniumDriver, (New-TimeSpan -Seconds 9)) 
-$seleniumWait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("/html/body/div[1]/main/div/section[1]/form/buttn")))
-
+$seleniumWait = New-Object -TypeName OpenQA.Selenium.Support.UI.WebDriverWait($seleniumDriver,(New-TimeSpan -Seconds 9)) 
+$seleniumWait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("/html/body/div[1]/main/div/section[1]/form/button")))
 $seleniumDriver.GetScreenshot().SaveAsFile("C:\temp\test.jpg") # Use the Method
 
 Write-debug "END: $(get-date)" # Record end-time
