@@ -19,30 +19,31 @@ $seleniumDriver.Navigate().GoToURL("https://www.hln.be")
 
 cleaner # Clears up console in VS-code the real way
 
-
-
 Write-debug  "BEGIN: $(get-date)" # Record start-time
 
                     ############## Concept ##############
 
-# A namespace seems to be a collections of functions\methods that are about the same "theme".
+# A namespace is a collection of types that share a common theme or act against a common service
     # OpenQA.Selenium.Support.UI                                            = Namespace
 
-# This means that a class lives within a namespace.
+# This means that a class lives within a namespace. (All .NET classes live in namespaces)
     # OpenQA.Selenium.Support.UI.ExpectedConditions                         = Class ->  To access with a namespace followed by a dot (.)
 
-# So now we can access the function\method within that class
+# So now we can access the static method within that class
     # [OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible     = Method of the Class ExpectedConditions accessed by ::
 
-# So the hierarchy is Namespace > Class > Method\Function
-
-
+# So the hierarchy is Namespace > Class > Method\Function - Static Method
 
 # Make the driver wait 10 seconds
 # This gets triggered by the until(), without it; it won't wait for 10 seconds and will move on to the next line.
 # If the element is visible after just one second, it will continue on, if not it will keep looking for the remaining 8 seconds after which it will continue on to the next line.
 $seleniumWait = New-Object -TypeName OpenQA.Selenium.Support.UI.WebDriverWait($seleniumDriver, (New-TimeSpan -Seconds 9)) 
 $seleniumWait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("/html/body/div[1]/main/div/section[1]/form/buttn")))
+
+$test = New-Object -TypeName OpenQA.Selenium.Chrome.ChromeDriver # New object of Chromedriver class
+$test.GetScreenshot() # Use the Method
+
+[OpenQA.Selenium.Chrome.Chrome]::DriverGetScreenshot
 
 Write-debug "END: $(get-date)" # Record end-time
 
