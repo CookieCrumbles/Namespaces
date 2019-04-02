@@ -12,7 +12,7 @@ get-process chromedriver | stop-process -ErrorAction SilentlyContinue -Force | o
 $seleniumOptions = New-Object OpenQA.Selenium.Chrome.ChromeOptions # Create new Object of the class ChromeOptions. ChromeOptions in it's turn is a Class of the namespace OpenQA.Selenium.Chrome
 $seleniumOptions.AddAdditionalCapability("useAutomationExtension", $false) # Use the method AddAdditionalCapability of the newly created object based on the ChromeOptions Class
 
-seleniumDriver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($seleniumOptions) # Create a new object of the ChromeDriver class and feed it the options by the object of the ChromeOptions Class. ChromeDriver is a class of the namespace OpenQA.Selenium.Chrome
+$seleniumDriver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($seleniumOptions) # Create a new object of the ChromeDriver class and feed it the options by the object of the ChromeOptions Class. ChromeDriver is a class of the namespace OpenQA.Selenium.Chrome
 $seleniumDriver.Navigate().GoToURL("https://www.hln.be")  
     # Navigate is a Method of the CLass ChromeDriver
     # GoToURL is Method of the Method navigate()
@@ -40,10 +40,7 @@ Write-debug  "BEGIN: $(get-date)" # Record start-time
 $seleniumWait = New-Object -TypeName OpenQA.Selenium.Support.UI.WebDriverWait($seleniumDriver, (New-TimeSpan -Seconds 9)) 
 $seleniumWait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible([OpenQA.Selenium.By]::XPath("/html/body/div[1]/main/div/section[1]/form/buttn")))
 
-$test = New-Object -TypeName OpenQA.Selenium.Chrome.ChromeDriver # New object of Chromedriver class
-$test.GetScreenshot() # Use the Method
-
-
+$seleniumDriver.GetScreenshot().SaveAsFile("C:\temp\test.jpg") # Use the Method
 
 Write-debug "END: $(get-date)" # Record end-time
 
