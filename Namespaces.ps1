@@ -27,10 +27,10 @@ Write-debug  "BEGIN: $(get-date)" # Record start-time
     # OpenQA.Selenium.Support.UI                                            = Namespace
 
 # This means that a class lives within a namespace. (All .NET classes live in namespaces)
-    # OpenQA.Selenium.Support.UI.ExpectedConditions                         = Class ->  To access with a namespace followed by a dot (.)
+    # OpenQA.Selenium.Support.UI.ExpectedConditions                         = Class ->  To access with a namespace followed by a dot (.) -->  . invokes methods on an instance of an object examples https://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Chrome_ChromeDriver.htm (fast cube icon)
 
 # So now we can access the static method within that class
-    # [OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible     = Method of the Class ExpectedConditions accessed by ::
+    # [OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVisible     = Method of the Class ExpectedConditions accessed by :: --> invokes static methods examples https://seleniumhq.github.io/selenium/docs/api/dotnet/
 
 # So the hierarchy is Namespace > Class > Method\Function - Static Method
 
@@ -43,7 +43,7 @@ $seleniumWait.Until([OpenQA.Selenium.Support.UI.ExpectedConditions]::ElementIsVi
 $test = New-Object -TypeName OpenQA.Selenium.Chrome.ChromeDriver # New object of Chromedriver class
 $test.GetScreenshot() # Use the Method
 
-[OpenQA.Selenium.Chrome.Chrome]::DriverGetScreenshot
+
 
 Write-debug "END: $(get-date)" # Record end-time
 
